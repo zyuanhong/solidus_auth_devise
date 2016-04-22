@@ -47,8 +47,8 @@ class Spree::UserSessionsController < Devise::SessionsController
   end
 
   def redirect_back_or_default(default)
-    redirect_to(session["spree_user_return_to"] || default)
-    session["spree_user_return_to"] = nil
+    redirect_to(session["#{Spree.user_class_singular_route_key}_return_to"] || default)
+    session["#{Spree.user_class_singular_route_key}_return_to"] = nil
   end
 
   def success_json

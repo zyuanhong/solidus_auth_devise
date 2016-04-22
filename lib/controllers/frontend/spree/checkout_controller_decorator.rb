@@ -5,7 +5,7 @@ Spree::CheckoutController.class_eval do
   prepend_before_filter :check_authorization
 
   def registration
-    @user = Spree::User.new
+    @user = Spree.user_class.new
   end
 
   def update_registration
@@ -13,7 +13,7 @@ Spree::CheckoutController.class_eval do
       redirect_to spree.checkout_path
     else
       flash[:registration_error] = t(:email_is_invalid, :scope => [:errors, :messages])
-      @user = Spree::User.new
+      @user = Spree.user_class.new
       render 'registration'
     end
   end
